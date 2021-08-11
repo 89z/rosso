@@ -1,11 +1,11 @@
 'use strict';
 
-/*
-browser.runtime.onMessage.addListener(message => {
-   let h1 = document.createElement('h1');
-   h1.textContent = message.greeting;
-   document.body.appendChild(h1);
+browser.runtime.onMessage.addListener(fmts => {
+   for (let fmt of fmts) {
+      if (fmt.mimeType.startsWith('audio/webm;')) {
+         document.querySelector('audio').src = fmt.url;
+         document.querySelector('div').textContent = fmt.url;
+         break;
+      }
+   }
 });
-*/
-
-console.log('popup');

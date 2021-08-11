@@ -1,6 +1,7 @@
 # Extension
 
 ~~~
+ui.popup.disable_autohide
 xpinstall.signatures.required
 ~~~
 

@@ -3,7 +3,7 @@
       "default_popup": "popup.html"
    },
    "browser_specific_settings": {
-      "gecko": {"id": "umber@89z"}
+      "gecko": {"id": "rosso@89z"}
    },
    "content_scripts": [
       {
@@ -12,6 +12,10 @@
       }
    ],
    "manifest_version": 2,
-   "name": "Umber",
+   "name": "Rosso",
+   "permissions": [
+      "https://www.youtube.com/",
+      "activeTab"
+   ],
    "version": "1.0.0"
 }
