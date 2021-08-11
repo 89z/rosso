@@ -1,0 +1,17 @@
+{
+   "browser_action": {
+      "default_popup": "popup.html"
+   },
+   "browser_specific_settings": {
+      "gecko": {"id": "umber@89z"}
+   },
+   "content_scripts": [
+      {
+         "js": ["tab.js"],
+         "matches": ["<all_urls>"]
+      }
+   ],
+   "manifest_version": 2,
+   "name": "Umber",
+   "version": "1.0.0"
+}
