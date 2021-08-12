@@ -14,7 +14,7 @@ async function newPlayer(videoID) {
    };
    let res = await fetch('https://www.youtube.com/youtubei/v1/player', req);
    let play = await res.json();
-   browser.runtime.sendMessage(play.streamingData.adaptiveFormats);
+   browser.runtime.sendMessage(play);
 }
 
 let yts = document.querySelectorAll('[href^="https://www.youtube.com/"]');
