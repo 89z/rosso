@@ -1,4 +1,4 @@
-# Extension
+# Rosso
 
 YouTube WebExtension
 
@@ -7,6 +7,12 @@ new tab. Right now it just does one track at a time, but hopefully soon I can
 code up a Enqueue feature. XPI here:
 
 https://github.com/89z/rosso/releases
+
+## Todo
+
+1. Playlist instead of single song
+2. SoundCloud
+3. BackBlaze
 
 ## Notes
 
