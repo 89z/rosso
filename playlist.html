@@ -6,14 +6,19 @@
    <meta name="viewport" content="width=device-width">
 </head>
 <body>
-   <h1>Rosso</h1>
-   <audio id="audio" controls src></audio>
-   <dl>
-      <dt>Author</dt>
-      <dd id="author">Steven Penny</dd>
-      <dt>Title</dt>
-      <dd id="title">Right click a YouTube link and it will load here</dd>
-   </dl>
+   <header>
+      <h1>Rosso</h1>
+   </header>
+   <main></main>
+   <template>
+      <figure>
+         <video controls></video>
+         <dl>
+            <dt class="title"></dt>
+            <dt class="author"></dt>
+         </dl>
+      </figure>
+   </template>
    <script src="playlist.js"></script>
 </body>
 </html>
