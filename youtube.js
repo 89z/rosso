@@ -1,6 +1,6 @@
 'use strict';
 
-async function newPlayer(videoID) {
+async function sendMessage(videoID) {
    let body = {
       context: {
          client: {clientName: 'ANDROID', clientVersion: '16.05'}
@@ -14,15 +14,35 @@ async function newPlayer(videoID) {
    };
    let res = await fetch('https://www.youtube.com/youtubei/v1/player', req);
    let play = await res.json();
-   browser.runtime.sendMessage(play);
+   let msg = {};
+   // title
+   msg.title = play.videoDetails.title;
+   // author
+   msg.author = play.videoDetails.author;
+   // poster
+   msg.poster = play.videoDetails.thumbnail.thumbnails[1].url;
+   // sort
+   play.streamingData.adaptiveFormats.sort(
+      (a, b) => b.bitrate - a.bitrate
+   );
+   for (let fmt of play.streamingData.adaptiveFormats) {
+      if (fmt.mimeType.startsWith('audio/webm;')) {
+         // itag
+         msg.itag = fmt.itag;
+         // src
+         msg.src = fmt.url;
+         break;
+      }
+   }
+   browser.runtime.sendMessage(msg);
 }
 
-let yts = document.querySelectorAll('[href^="https://www.youtube.com/"]');
+let as = document.querySelectorAll('[href^="https://www.youtube.com/"]');
 
-for (let yt of yts) {
-   yt.addEventListener('contextmenu', function() {
+for (let a of as) {
+   a.addEventListener('contextmenu', function() {
       let addr = new URL(this.href);
       let id = addr.searchParams.get('v');
-      newPlayer(id);
+      sendMessage(id);
    });
 }

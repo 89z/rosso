@@ -5,17 +5,31 @@ h1 {
 dl {
    font-family: sans-serif;
 }
-body {
-   text-align: center;
-}
 figure {
    margin-bottom: 2rem;
    margin-left: 0;
+}
+table {
+   margin-left: auto;
+}
+figure {
    margin-right: 0;
+}
+table {
+   margin-right: auto;
 }
 dl {
    margin-top: 9px;
 }
 figure {
    margin-top: 2rem;
+}
+th {
+   padding-right: 2rem;
+}
+body {
+   text-align: center;
+}
+table {
+   text-align: left;
 }
