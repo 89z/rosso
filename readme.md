@@ -11,9 +11,8 @@ https://github.com/89z/rosso/releases
 
 ## Todo
 
-1. BackBlaze
-2. SoundCloud
-3. Documentation
+1. SoundCloud
+2. Documentation
 
 ## Author
 

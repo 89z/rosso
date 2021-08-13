@@ -2,34 +2,23 @@ h1 {
    color: #D40000;
    font-family: Calibri;
 }
-dl {
+div {
    font-family: sans-serif;
 }
 figure {
    margin-bottom: 2rem;
    margin-left: 0;
-}
-table {
-   margin-left: auto;
-}
-figure {
    margin-right: 0;
 }
-table {
-   margin-right: auto;
-}
-dl {
+div {
    margin-top: 9px;
 }
 figure {
    margin-top: 2rem;
 }
-th {
-   padding-right: 2rem;
+video {
+   max-height: 240px;
 }
 body {
    text-align: center;
-}
-table {
-   text-align: left;
 }

@@ -9,10 +9,11 @@ function append(msg) {
    // poster
    let vid = fig.querySelector('video');
    vid.poster = msg.poster;
-   // itag
-   fig.querySelector('.itag').textContent = msg.itag;
+   // quality
+   fig.querySelector('.quality').textContent = msg.quality;
    // src
    vid.src = msg.src;
+   vid.load();
    // ended
    vid.onended = next;
    // append
@@ -20,9 +21,7 @@ function append(msg) {
 }
 
 function next() {
-   // remove
    main.querySelector('figure').remove();
-   // play
    let vid = main.querySelector('video');
    if (vid !== null) {
       vid.play();

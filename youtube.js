@@ -1,11 +1,12 @@
 'use strict';
 
-async function sendMessage(videoID) {
+async function youTube() {
+   let addr = new URL(this.href);
    let body = {
       context: {
          client: {clientName: 'ANDROID', clientVersion: '16.05'}
       },
-      videoId: videoID
+      videoId: addr.searchParams.get('v')
    };
    let req = {
       body: JSON.stringify(body),
@@ -27,22 +28,17 @@ async function sendMessage(videoID) {
    );
    for (let fmt of play.streamingData.adaptiveFormats) {
       if (fmt.mimeType.startsWith('audio/webm;')) {
-         // itag
-         msg.itag = fmt.itag;
-         // src
+         msg.quality = fmt.audioQuality;
          msg.src = fmt.url;
          break;
       }
    }
+   // send
    browser.runtime.sendMessage(msg);
 }
 
-let as = document.querySelectorAll('[href^="https://www.youtube.com/"]');
+let yts = document.querySelectorAll('[href^="https://www.youtube.com/"]');
 
-for (let a of as) {
-   a.addEventListener('contextmenu', function() {
-      let addr = new URL(this.href);
-      let id = addr.searchParams.get('v');
-      sendMessage(id);
-   });
+for (let yt of yts) {
+   yt.addEventListener('contextmenu', youTube);
 }
