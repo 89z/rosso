@@ -1,9 +1,30 @@
 'use strict';
 
-let scs = document.querySelectorAll('[href^="https://w.soundcloud.com/"]');
+async function getMedia(track) {
+   let param = new URLSearchParams({
+      client_id: 'fSSdm5yTnDka1g0Fz1CO5Yx6z0NbeHAj'
+   });
+   let addr = '';
+   for (let code of track[0].media.transcodings) {
+      if code.format.protocol == 'progressive' {
+         addr = code.url;
+      }
+   }
+   let media = new URL(addr);
+   media.search = String(param);
+   let res = await fetch(media);
+   return await res.json();
+}
 
-for (let sc of scs) {
-   sc.addEventListener('contextmenu', soundCloud);
+async function trackID(id) {
+   let param = new URLSearchParams({
+      client_id: 'fSSdm5yTnDka1g0Fz1CO5Yx6z0NbeHAj',
+      ids: id
+   });
+   let track = new URL('https://api-v2.soundcloud.com/tracks');
+   track.search = String(param);
+   let res = await fetch(track);
+   return await res.json();
 }
 
 function soundCloud() {
@@ -13,20 +34,20 @@ function soundCloud() {
    msg.author = 'Cloud';
    msg.quality = '';
    // src
-   let play = new URL(this.href);
-   let id = play.searchParams.get('url').split('/').slice(-1);
-   let track = new URL('https://api-v2.soundcloud.com/tracks');
-   /*
-   let search = new URLSearchParams({
-      client_id: 'fSSdm5yTnDka1g0Fz1CO5Yx6z0NbeHAj',
-      ids: '103650107'
-   });
-   track.search = search.toString();
-
-   GET /tracks?client_id=fSSdm5yTnDka1g0Fz1CO5Yx6z0NbeHAj&ids=103650107 HTTP/1.1
-
-   GET /media/soundcloud:tracks:103650107/aca81dd5-2feb-4fc4-a102-036fb35fe44a/stream/progressive?client_id=fSSdm5yTnDka1g0Fz1CO5Yx6z0NbeHAj HTTP/1.1
-   Host: api-v2.soundcloud.com
-   */
+   let url = new URL(this.href);
+   let id = url.searchParams.get('url').split('/').slice(-1);
+   let track = trackID(id);
+   msg.src = getMedia(track).url;
    browser.runtime.sendMessage(msg);
 }
+
+delay(function() {
+   let as = document.querySelectorAll('[href^="https://w.soundcloud.com/"]');
+   if (as.length == 0) {
+      return false;
+   }
+   for (let a of as) {
+      a.addEventListener('contextmenu', soundCloud);
+   }
+   return true;
+}, 99, 9);

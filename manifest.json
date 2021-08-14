@@ -10,7 +10,11 @@
    },
    "content_scripts": [
       {
-         "js": ["backblaze.js", "youtube.js"],
+         "js": [
+            "main.js",
+            "youtube.js",
+            "backblaze.js"
+         ],
          "matches": ["<all_urls>"]
       }
    ],

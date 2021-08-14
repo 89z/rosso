@@ -10,8 +10,13 @@ function backBlaze() {
    browser.runtime.sendMessage(msg);
 }
 
-let bbs = document.querySelectorAll('[href*=".backblazeb2.com/"]');
-
-for (let bb of bbs) {
-   bb.addEventListener('contextmenu', backBlaze);
-}
+delay(function() {
+   let as = document.querySelectorAll('[href*=".backblazeb2.com/"]');
+   if (as.length == 0) {
+      return false;
+   }
+   for (let a of as) {
+      a.addEventListener('contextmenu', backBlaze);
+   }
+   return true;
+}, 99, 9);

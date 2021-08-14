@@ -14,31 +14,31 @@ async function youTube() {
       method: 'POST'
    };
    let res = await fetch('https://www.youtube.com/youtubei/v1/player', req);
+   let play = await res.json();
+   play.streamingData.adaptiveFormats.sort(
+      (a, b) => b.bitrate - a.bitrate
+   );
    let msg = {
       poster: this.querySelector('img').src,
       title: this.parentNode.querySelector('td').textContent
    };
-   if (res.ok) {
-      let play = await res.json();
-      play.streamingData.adaptiveFormats.sort(
-         (a, b) => b.bitrate - a.bitrate
-      );
-      for (let fmt of play.streamingData.adaptiveFormats) {
-         if (fmt.mimeType.startsWith('audio/webm;')) {
-            msg.src = fmt.url;
-            msg.status = fmt.audioQuality;
-            break;
-         }
+   for (let fmt of play.streamingData.adaptiveFormats) {
+      if (fmt.mimeType.startsWith('audio/webm;')) {
+         msg.src = fmt.url;
+         msg.status = fmt.audioQuality;
+         break;
       }
-   } else {
-      msg.src = '';
-      msg.status = String(res.status) + ' ' + res.statusText;
    }
    browser.runtime.sendMessage(msg);
 }
 
-let yts = document.querySelectorAll('[href^="https://www.youtube.com/"]');
-
-for (let yt of yts) {
-   yt.addEventListener('contextmenu', youTube);
-}
+delay(function() {
+   let as = document.querySelectorAll('[href^="https://www.youtube.com/"]');
+   if (as.length == 0) {
+      return false;
+   }
+   for (let a of as) {
+      a.addEventListener('contextmenu', youTube);
+   }
+   return true;
+}, 99, 9);

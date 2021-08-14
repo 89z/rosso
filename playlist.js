@@ -7,10 +7,8 @@ function append(msg) {
    let vid = fig.querySelector('video');
    vid.onended = next;
    vid.poster = msg.poster;
-   if (msg.src !== '') {
-      vid.src = msg.src;
-      vid.load();
-   }
+   vid.src = msg.src;
+   vid.load();
    main.append(fig);
 }
 
