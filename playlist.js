@@ -2,21 +2,15 @@
 
 function append(msg) {
    let fig = temp.content.cloneNode(true);
-   // title
    fig.querySelector('.title').textContent = msg.title;
-   // author
-   fig.querySelector('.author').textContent = msg.author;
-   // poster
+   fig.querySelector('.status').textContent = msg.status;
    let vid = fig.querySelector('video');
-   vid.poster = msg.poster;
-   // quality
-   fig.querySelector('.quality').textContent = msg.quality;
-   // src
-   vid.src = msg.src;
-   vid.load();
-   // ended
    vid.onended = next;
-   // append
+   vid.poster = msg.poster;
+   if (msg.src !== '') {
+      vid.src = msg.src;
+      vid.load();
+   }
    main.append(fig);
 }
 

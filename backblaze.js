@@ -2,11 +2,10 @@
 
 function backBlaze() {
    let msg = {
-      author: '',
       poster: this.querySelector('img').src,
-      quality: '',
+      title: this.parentNode.querySelector('td').textContent,
       src: this.href,
-      title: this.parentNode.querySelector('td').textContent
+      status: ''
    };
    browser.runtime.sendMessage(msg);
 }

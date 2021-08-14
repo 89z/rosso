@@ -14,26 +14,26 @@ async function youTube() {
       method: 'POST'
    };
    let res = await fetch('https://www.youtube.com/youtubei/v1/player', req);
-   let play = await res.json();
-   let msg = {};
-   // title
-   msg.title = play.videoDetails.title;
-   // author
-   msg.author = play.videoDetails.author;
-   // poster
-   msg.poster = play.videoDetails.thumbnail.thumbnails[1].url;
-   // sort
-   play.streamingData.adaptiveFormats.sort(
-      (a, b) => b.bitrate - a.bitrate
-   );
-   for (let fmt of play.streamingData.adaptiveFormats) {
-      if (fmt.mimeType.startsWith('audio/webm;')) {
-         msg.quality = fmt.audioQuality;
-         msg.src = fmt.url;
-         break;
+   let msg = {
+      poster: this.querySelector('img').src,
+      title: this.parentNode.querySelector('td').textContent
+   };
+   if (res.ok) {
+      let play = await res.json();
+      play.streamingData.adaptiveFormats.sort(
+         (a, b) => b.bitrate - a.bitrate
+      );
+      for (let fmt of play.streamingData.adaptiveFormats) {
+         if (fmt.mimeType.startsWith('audio/webm;')) {
+            msg.src = fmt.url;
+            msg.status = fmt.audioQuality;
+            break;
+         }
       }
+   } else {
+      msg.src = '';
+      msg.status = String(res.status) + ' ' + res.statusText;
    }
-   // send
    browser.runtime.sendMessage(msg);
 }
 
