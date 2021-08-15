@@ -1,8 +1,12 @@
+body {
+   background: radial-gradient(#dee1ec 80%, #becbff);
+}
 h1 {
    color: #D40000;
    font-family: Calibri;
 }
-div {
+div,
+footer {
    font-family: sans-serif;
 }
 figure {

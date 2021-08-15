@@ -2,9 +2,9 @@
 
 function backBlaze() {
    let msg = {
+      src: this.href,
       poster: this.querySelector('img').src,
       title: this.parentNode.querySelector('td').textContent,
-      src: this.href,
       status: ''
    };
    browser.runtime.sendMessage(msg);

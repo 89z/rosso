@@ -11,7 +11,7 @@ https://github.com/89z/rosso/releases
 
 ## Todo
 
-1. SoundCloud
+1. Vimeo
 2. Documentation
 
 ## Author
@@ -21,6 +21,7 @@ Steven Penny
 ## Notes
 
 ~~~
+about:debugging#runtime/this-firefox
 xpinstall.signatures.required
 ~~~
 

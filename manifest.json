@@ -11,8 +11,9 @@
    "content_scripts": [
       {
          "js": [
-            "main.js",
+            "delay.js",
             "youtube.js",
+            "soundcloud.js",
             "backblaze.js"
          ],
          "matches": ["<all_urls>"]
@@ -20,6 +21,9 @@
    ],
    "manifest_version": 2,
    "name": "Rosso",
-   "permissions": ["https://www.youtube.com/"],
+   "permissions": [
+      "https://api-v2.soundcloud.com/",
+      "https://www.youtube.com/"
+   ],
    "version": "1.0.0"
 }

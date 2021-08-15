@@ -1,15 +1,18 @@
 'use strict';
 
 function append(msg) {
+   // append figure
    let fig = temp.content.cloneNode(true);
-   fig.querySelector('.title').textContent = msg.title;
-   fig.querySelector('.status').textContent = msg.status;
+   // all queries need to be done before append
    let vid = fig.querySelector('video');
-   vid.onended = next;
-   vid.poster = msg.poster;
+   fig.querySelector('.status').textContent = msg.status;
+   fig.querySelector('.title').textContent = msg.title;
+   main.append(fig);
+   // src
    vid.src = msg.src;
    vid.load();
-   main.append(fig);
+   vid.onended = next;
+   vid.poster = msg.poster;
 }
 
 function next() {
