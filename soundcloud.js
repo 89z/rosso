@@ -50,4 +50,4 @@ delay(function() {
       a.addEventListener('contextmenu', soundCloud);
    }
    return true;
-}, 99, 9);
+}, time, count);

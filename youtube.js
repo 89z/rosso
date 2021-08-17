@@ -41,4 +41,4 @@ delay(function() {
       a.addEventListener('contextmenu', youTube);
    }
    return true;
-}, 99, 9);
+}, time, count);

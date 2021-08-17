@@ -19,4 +19,4 @@ delay(function() {
       a.addEventListener('contextmenu', backBlaze);
    }
    return true;
-}, 99, 9);
+}, time, count);
