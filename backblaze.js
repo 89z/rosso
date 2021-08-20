@@ -1,7 +1,7 @@
 'use strict';
 
 function backBlaze() {
-   let msg = {
+   const msg = {
       src: this.href,
       poster: this.querySelector('img').src,
       title: this.parentNode.querySelector('td').textContent,
@@ -11,11 +11,11 @@ function backBlaze() {
 }
 
 delay(function() {
-   let as = document.querySelectorAll('[href*=".backblazeb2.com/"]');
+   const as = document.querySelectorAll('[href*=".backblazeb2.com/"]');
    if (as.length == 0) {
       return false;
    }
-   for (let a of as) {
+   for (const a of as) {
       a.addEventListener('contextmenu', backBlaze);
    }
    return true;
