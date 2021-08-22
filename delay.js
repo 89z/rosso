@@ -4,8 +4,8 @@ const time = 99;
 const count = 99;
 
 function delay(callback, time, count) {
-   let id = setInterval(function() {
-      let ok = callback();
+   const id = setInterval(function() {
+      const ok = callback();
       count--;
       if (ok || count == 0) {
          clearInterval(id);
