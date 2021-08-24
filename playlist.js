@@ -1,9 +1,9 @@
 'use strict';
 
 function append(msg) {
-   let fig = temp.content.firstElementChild.cloneNode(true);
+   const fig = temp.content.firstElementChild.cloneNode(true);
    main.append(fig);
-   let vid = fig.querySelector('video');
+   const vid = fig.querySelector('video');
    // src
    vid.src = msg.src;
    vid.load();
@@ -18,12 +18,12 @@ function append(msg) {
 
 function next() {
    main.querySelector('figure').remove();
-   let vid = main.querySelector('video');
+   const vid = main.querySelector('video');
    if (vid !== null) {
       vid.play();
    }
 }
 
-let main = document.querySelector('main');
-let temp = document.querySelector('template');
+const main = document.querySelector('main');
+const temp = document.querySelector('template');
 browser.runtime.onMessage.addListener(append);
