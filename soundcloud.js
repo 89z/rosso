@@ -1,52 +1,51 @@
 'use strict';
 
 async function soundCloudMedia(track) {
-   let param = new URLSearchParams({
+   const param = new URLSearchParams({
       client_id: 'fSSdm5yTnDka1g0Fz1CO5Yx6z0NbeHAj'
    });
-   let addr = '';
-   for (let code of track[0].media.transcodings) {
-      if (code.format.protocol == 'progressive') {
-         addr = code.url;
+   for (const code of track[0].media.transcodings) {
+      if (code.format.protocol != 'progressive') {
+         continue;
       }
+      const media = new URL(code.url);
+      media.search = String(param);
+      const res = await fetch(media);
+      return res.json();
    }
-   let media = new URL(addr);
-   media.search = String(param);
-   let res = await fetch(media);
-   return res.json();
+   return {url: ''};
 }
 
 async function soundCloudTrack(id) {
-   let param = new URLSearchParams({
+   const param = new URLSearchParams({
       client_id: 'fSSdm5yTnDka1g0Fz1CO5Yx6z0NbeHAj',
       ids: id
    });
-   let track = new URL('https://api-v2.soundcloud.com/tracks');
+   const track = new URL('https://api-v2.soundcloud.com/tracks');
    track.search = String(param);
-   let res = await fetch(track);
+   const res = await fetch(track);
    return res.json();
 }
 
 async function soundCloud() {
-   let url = new URL(this.href);
-   let id = url.searchParams.get('url').split('/').slice(-1);
-   let track = await soundCloudTrack(id);
-   let media = await soundCloudMedia(track);
-   let msg = {
+   const url = new URL(this.href);
+   const id = url.searchParams.get('url').split('/').slice(-1);
+   const track = await soundCloudTrack(id);
+   const media = await soundCloudMedia(track);
+   browser.runtime.sendMessage({
       src: media.url,
       poster: this.querySelector('img').src,
       title: this.parentNode.querySelector('td').textContent,
       status: ''
-   };
-   browser.runtime.sendMessage(msg);
+   });
 }
 
 delay(function() {
-   let as = document.querySelectorAll('[href^="https://w.soundcloud.com/"]');
+   const as = document.querySelectorAll('[href^="https://w.soundcloud.com/"]');
    if (as.length == 0) {
       return false;
    }
-   for (let a of as) {
+   for (const a of as) {
       a.addEventListener('contextmenu', soundCloud);
    }
    return true;
