@@ -21,8 +21,7 @@ https://github.com/89z/rosso/releases
 
 ## Todo
 
-1. Vimeo
-2. Documentation
+Documentation
 
 ## Notes
 
