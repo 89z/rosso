@@ -1,13 +1,12 @@
 'use strict';
 
 function backBlaze() {
-   const msg = {
+   browser.runtime.sendMessage({
       src: this.href,
       poster: this.querySelector('img').src,
       title: this.parentNode.querySelector('td').textContent,
       status: ''
-   };
-   browser.runtime.sendMessage(msg);
+   });
 }
 
 delay(function() {
