@@ -9,8 +9,10 @@
 
 WebExtension
 
-1. YouTube
-2. SoundCloud
+Supported sites:
+
+- SoundCloud
+- YouTube
 
 Once you start the extension, it will open an empty playlist in new tab. After
 that, you can go to other tabs, and if you right click on any YouTube links,
