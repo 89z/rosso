@@ -21,10 +21,6 @@ the first video is ended, it will automatically start the next video. XPI here:
 
 https://github.com/89z/rosso/releases
 
-## Todo
-
-Documentation
-
 ## Notes
 
 ~~~
