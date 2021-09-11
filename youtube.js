@@ -23,7 +23,8 @@ async function youTube() {
       title: this.parentNode.querySelector('td').textContent
    };
    for (const fmt of play.streamingData.adaptiveFormats) {
-      if (fmt.mimeType.startsWith('audio/webm;')) {
+      // some videos do not offer WebM: 6_lMeEMMbyY
+      if (fmt.audioQuality == 'AUDIO_QUALITY_MEDIUM') {
          msg.src = fmt.url;
          msg.status = fmt.audioQuality;
          break;
