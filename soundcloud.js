@@ -35,8 +35,7 @@ async function soundCloud() {
    browser.runtime.sendMessage({
       src: media.url,
       poster: this.querySelector('img').src,
-      title: this.parentNode.querySelector('td').textContent,
-      status: ''
+      title: this.parentNode.querySelector('td').textContent
    });
 }
 

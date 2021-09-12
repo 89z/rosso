@@ -11,9 +11,7 @@ function append(msg) {
    // poster
    vid.poster = msg.poster;
    // title
-   fig.querySelector('.title').textContent = msg.title;
-   // status
-   fig.querySelector('.status').textContent = msg.status;
+   fig.querySelector('figcaption').textContent = msg.title;
 }
 
 function next() {

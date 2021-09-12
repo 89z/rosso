@@ -5,7 +5,7 @@ h1 {
    color: #D40000;
    font-family: Calibri;
 }
-div,
+figcaption,
 footer {
    font-family: sans-serif;
 }
@@ -14,7 +14,7 @@ figure {
    margin-left: 0;
    margin-right: 0;
 }
-div {
+figcaption {
    margin-top: 9px;
 }
 figure {
