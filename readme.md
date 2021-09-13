@@ -23,8 +23,15 @@ https://github.com/89z/rosso/releases
 
 ## Notes
 
+Visit this page for testing:
+
 ~~~
 about:debugging#runtime/this-firefox
+~~~
+
+Change this setting to allow installation:
+
+~~~
 xpinstall.signatures.required
 ~~~
 
