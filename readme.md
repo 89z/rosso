@@ -37,7 +37,6 @@ xpinstall.signatures.required
 
 - <https://developer.mozilla.org/docs/Mozilla/Add-ons/WebExtensions/user_interface>
 - https://extensionworkshop.com/documentation/develop/test-permission-requests
-- https://github.com/TeamNewPipe/NewPipe/issues/4779
 - https://stackoverflow.com/questions/39076184/how-do-i-see-the-console-log
 - https://superuser.com/questions/1465087/how-to-analyze-popup-window
 
