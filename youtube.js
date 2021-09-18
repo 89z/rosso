@@ -15,19 +15,24 @@ async function youTube() {
    };
    const res = await fetch('https://www.youtube.com/youtubei/v1/player', req);
    const play = await res.json();
-   play.streamingData.adaptiveFormats.sort(
-      (a, b) => b.bitrate - a.bitrate
-   );
    const msg = {
       poster: this.querySelector('img').src,
       title: this.parentNode.querySelector('td').textContent
    };
-   for (const fmt of play.streamingData.adaptiveFormats) {
-      // some videos do not offer WebM: 6_lMeEMMbyY
-      if (fmt.audioQuality == 'AUDIO_QUALITY_MEDIUM') {
-         msg.src = fmt.url;
-         break;
+   if (play.playabilityStatus.status == 'OK') {
+      play.streamingData.adaptiveFormats.sort(
+         (a, b) => b.bitrate - a.bitrate
+      );
+      for (const fmt of play.streamingData.adaptiveFormats) {
+         // some videos do not offer WebM: 6_lMeEMMbyY
+         if (fmt.audioQuality == 'AUDIO_QUALITY_MEDIUM') {
+            msg.src = fmt.url;
+            break;
+         }
       }
+   } else {
+      msg.src = '';
+      msg.title += ' - ' + play.playabilityStatus.reason;
    }
    browser.runtime.sendMessage(msg);
 }
